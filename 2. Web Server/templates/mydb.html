@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+{% block title %}내 고객 정보{% endblock %}
+
+{% block userpanel %}
+<!-- Sidebar user panel (optional) -->
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+  <div class="image">
+    <img src="../static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+  </div>
+  <div class="info">
+    <a href="#" class="d-block">{{ user }}</a>
+  </div>
+</div>
+<!-- Sidebar user panel (optional) -->
+<div class="user-panel mt-3 pb-3 mb-3">
+  {% if user == 'GUEST' %}
+  <a href="/login" target="" class="btn btn-block btn-primary">
+    <i class="fas fa-sign-in-alt"></i> LOGIN
+  </a>
+  {% else %}
+  <a href="/logout" target="" class="btn btn-block btn-primary">
+    <i class="fas fa-sign-out-alt"></i> LOGOUT
+  </a>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block nav_item %}
+<li class="nav-item">
+  <a href="/" class="nav-link">
+    <i class="nav-icon far fa-circle text-info"></i>
+    <p>DB 구매하기</p>
+  </a>
+</li>
+<li class="nav-item">
+  <a href="/history" class="nav-link">
+    <i class="nav-icon far fa-circle text-info"></i>
+    <p>DB 구매내역</p>
+  </a>
+</li>
+<li class="nav-item">
+  <a href="/mydb" class="nav-link">
+    <i class="nav-icon far fa-circle text-info"></i>
+    <p>내 고객 정보</p>
+  </a>
+</li>
+
+{% endblock %}
+
+{% block section %}
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>DB 날짜</th>
+                  <th>DB 구분</th>
+                  <th>고객 연락처</th>
+                  <th>지역</th>
+                  <th>최근 상담일</th>
+                  <th>상담결과</th>
+                  <th>A/S 결과</th>
+                  <th>기능</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2020. 06. 03. 14시</td>
+                  <td>산모 DB 퍼미션</td>
+                  <td style="width:200px;">김동현 / 010-7334-3551</td>
+                  <td>대전</td>
+                  <td>2020. 06. 03. 22시</td>
+                  <td>상담완료</td>
+                  <td>A/S 불가</td>
+                  <td style="width:200px;" class='p-1'>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                      data-target="#modal-detailview">상세보기</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal"
+                      data-target="#modal-comment">상담일지</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+
+  <div class="modal fade" id="modal-detailview">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">상세보기</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Profile Image -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">DB 구매 정보</h3>
+                </div>
+                <div class="card-body box-profile">
+                  <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                      <b>DB 날짜</b> <a class="float-right">2020. 06. 03. 12시</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>DB 구분</b> <a class="float-right">산모 DB 퍼미션</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>고객 연락처</b> <a class="float-right">김동현 / 010-7334-3551</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>지역</b> <a class="float-right">대전</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>최근 상담일</b> <a class="float-right">2020. 06. 03. 12시</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>상담결과</b> <a class="float-right">상담완료</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-6">
+              <!-- About Me Box -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">DB 상담 정보</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <strong><i class="fas fa-book mr-1"></i>고객 특이사항</strong>
+                  <p class="text-muted">
+                    기혼, 3인(자녀1), 보험료 20만원대, 본인관리(특별히 관리자는 없음), 암X 뇌혈관X 심혈관X
+                  </p>
+                  <hr>
+                  <strong><i class="fas fa-map-marker-alt mr-1"></i>녹취록</strong>
+                  <p class="text-muted">링크 다운받기</p>
+                  <hr>
+                  <strong><i class="fas fa-pencil-alt mr-1"></i>기타</strong>
+                  <p class="text-muted">해당사항 없음</p>
+                  <hr>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between float-right">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">정보 수정하기</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal fade" id="modal-comment">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">상담일지</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- The timeline -->
+          <div class="timeline timeline-inverse">
+            <!-- timeline time label -->
+            <div class="time-label">
+              <span class="bg-danger">
+                10 Feb. 2014
+              </span>
+            </div>
+            <!-- /.timeline-label -->
+            <div>
+              <i class="fas fa-envelope bg-primary"></i>
+              <div class="timeline-item">
+                <span class="time"><i class="far fa-clock"></i> 12:05</span>
+                <h3 class="timeline-header"><a href="#">상담메모</a></h3>
+                <div class="timeline-body">
+                  Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                  weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                  jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                  quora plaxo ideeli hulu weebly balihoo...
+                </div>
+                <div class="timeline-footer">
+                  <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+              </div>
+            </div>
+            <!-- END timeline item -->
+          </div>
+          <form class="form-horizontal">
+            <div class="input-group input-group-sm mb-0">
+              <input class="form-control form-control-sm" placeholder="Response">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-info">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</section>
+<!-- /.content -->
+{% endblock %}

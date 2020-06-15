@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block title %}주문처리내역{% endblock %}
+
+{% block user %}HanBoGun DB Manager{% endblock %}
+
+{% block nav_item %}
+<li class="nav-item">
+  <a href="/admin" class="nav-link">
+    <i class="nav-icon far fa-circle text-info"></i>
+    <p>주문요청</p>
+  </a>
+</li>
+<li class="nav-item">
+  <a href="/admin/history" class="nav-link">
+    <i class="nav-icon far fa-circle text-info"></i>
+    <p>주문처리내역</p>
+  </a>
+</li>
+{% endblock %}
+
+{% block section %}
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>주문자</th>
+                  <th>주문날짜</th>
+                  <th>주문DB</th>
+                  <th>수량</th>
+                  <th>지역</th>
+                  <th>기능</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>psds075</td>
+                  <td>김동현</td>
+                  <td>2020/06/02</td>
+                  <td>보험증권분석</td>
+                  <td>3</td>
+                  <td>대전</td>
+                  <td style="width:200px;" class='p-1'>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                      data-target="#modal-default">DB수정</button>
+                    <button type="button" class="btn btn-danger" onclick="confirm('삭제하시겠습니까?')">삭제</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div><!-- /.container-fluid -->
+
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">제공한 DB 확인</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover text-nowrap">
+            <thead>
+              <tr>
+                <th>항목</th>
+                <th>값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DB구분</td>
+                <td>보험증권분석</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>고객명</td>
+                <td>정명희</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>성별</td>
+                <td>여성</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>생년월일</td>
+                <td>1966/08/14</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>지역</td>
+                <td>충청도</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>주소</td>
+                <td>충남 부여군 구암면</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>이메일</td>
+                <td>myunghee@example.net</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>특이사항</td>
+                <td>일정조율 문자 후 전화</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>녹취록</td>
+                <td>녹취록 음성파일</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>검수결과</td>
+                <td>검수완료</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</section>
+<!-- /.content -->
+{% endblock %}
