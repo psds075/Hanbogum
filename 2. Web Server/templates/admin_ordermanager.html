@@ -1,0 +1,239 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}주문요청{% endblock %}
+
+{% block userpanel %}
+<!-- Sidebar user panel (optional) -->
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+  <div class="image">
+    <img src="../static/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+  </div>
+  <div class="info">
+    <a href="#" class="d-block">한보금 DB 매니저</a>
+  </div>
+</div>
+<!-- Sidebar user panel (optional) -->
+<div class="user-panel mt-3 pb-3 mb-3">
+  {% if user == 'GUEST' %}
+  <a href="/login" target="" class="btn btn-block btn-primary">
+    <i class="fas fa-sign-in-alt"></i> LOGIN
+  </a>
+  {% else %}
+  <a href="/logout" target="" class="btn btn-block btn-primary">
+    <i class="fas fa-sign-out-alt"></i> LOGOUT
+  </a>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block nav_item %}
+<li class="nav-item">
+  <a href="/admin" class="nav-link">
+    <i class="nav-icon far fa-circle text-info"></i>
+    <p>주문요청</p>
+  </a>
+</li>
+<li class="nav-item">
+  <a href="/admin/history" class="nav-link">
+    <i class="nav-icon far fa-circle text-info"></i>
+    <p>주문처리내역</p>
+  </a>
+</li>
+{% endblock %}
+
+{% block section %}
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-tabs">
+          <div class="card-header p-0 pt-1">
+            <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#tab_1" role="tab"
+                  aria-controls="tab_1" aria-selected="true">입금대기</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#tab_2" role="tab"
+                  aria-controls="tab_2" aria-selected="false">입금완료</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#tab_2" role="tab"
+                  aria-controls="tab_2" aria-selected="false">DB 배분 완료</a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <div class="tab-content" id="tab_content">
+              <div class="tab-pane fade show active" id="tab_1" role="tabpanel"
+                aria-labelledby="tab_1">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>주문자</th>
+                      <th>주문날짜</th>
+                      <th>주문DB</th>
+                      <th>수량</th>
+                      <th>지역</th>
+                      <th>상태</th>
+                      <th>기능</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in OrderList %}
+                    <tr>
+                      <td>{{item.BuyerId}}</td>
+                      <td>{{item.BuyerName}}</td>
+                      <td>{{item.OrderDate}}</td>
+                      <td>{{item.ProductName}}</td>
+                      <td>{{item.Quantity}}</td>
+                      <td>{{item.Location}}</td>
+                      <td style='padding:5px'>
+                        <select onchange="changeStatus('{{item.pk}}',this);" class='form-control'
+                          style='width:100px;margin:0px;padding:0px'>
+                          <option>입금대기</option>
+                          <option {%+ if item.Status=="입금완료" %}selected{% endif %}>입금완료</option>
+                        </select>
+                      </td>
+                      <td style="width:200px;" class='p-1'>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                          data-target="#modal-default">DB제공하기</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-comment"
+                          onclick="deleteOrder('{{item.pk}}')">주문취소</button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane fade" id="tab_2" role="tabpanel"
+              aria-labelledby="tab_2">
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div><!-- /.container-fluid -->
+
+  <div class="modal fade" id="modal-generateDB">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">DB 제공</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleInput">DB 구분</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleInput">고객명</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleInput">성별</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleInput">생년월일</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleInput">지역</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleInput">주소</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">이메일</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleInput">특이사항</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">녹취록</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="">Upload</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInput">검수결과</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </form>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary">정보제공</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+</section>
+<!-- /.content -->
+{% endblock %}
+
+{% block script %}
+<script>
+  function deleteOrder(pk) {
+    var reply = confirm("정말로 주문 취소하시겠습니까?");
+    if (reply == true) {
+      var order = { pk: pk };
+      $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1/restAPI/deleteOrder",
+        data: JSON.stringify(order),
+        contentType: "application/json",
+        success: function (data) {
+          window.location.href = 'http://127.0.0.1/admin';
+          return data;
+        },
+        error: function () {
+          alert('Error occured');
+        }
+      });
+    }
+  }
+
+  function changeStatus(pk, tab) {
+    status = (tab.value || tab.options[tab.selectedIndex].value);
+    var order = { pk: pk, status: status };
+    $.ajax({
+      type: "POST",
+      url: "http://127.0.0.1/restAPI/changeStatus",
+      data: JSON.stringify(order),
+      contentType: "application/json",
+    });
+  }
+
+</script>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'client_base.html' %}
 
 {% block title %}DB 구매내역{% endblock %}
 
@@ -34,7 +34,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a href="/history" class="nav-link">
+  <a href="/history" class="nav-link active">
     <i class="nav-icon far fa-circle text-info"></i>
     <p>DB 구매내역</p>
   </a>
@@ -50,53 +50,39 @@
 
 {% block section %}
 <!-- Main content -->
+
 <section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <table id="example2" class="table table-bordered table-hover">
+            <table id="historyTable" class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <th>구매날짜</th>
                   <th>상품명</th>
                   <th>수량</th>
                   <th>지역</th>
+                  <th>상태</th>
                   <th>기능</th>
                 </tr>
               </thead>
               <tbody>
+                {% for Order in OrderList %}
                 <tr>
-                  <td>2020. 06. 03.</td>
-                  <td>산모 DB 퍼미션</td>
-                  <td style="width:200px;">3</td>
-                  <td>대전</td>
-                  <td style="width:200px;" class='p-1'>
-                    <button type="button" class="btn btn-default">상세보기</button>
-                    <button type="button" class="btn btn-danger">환불받기</button>
+                  <td>{{Order.OrderDate}}</td>
+                  <td>{{Order.ProductName}}</td>
+                  <td style="width:80px;">{{Order.Quantity}}</td>
+                  <td>{{Order.Location}}</td>
+                  <td style="width:100px;" class='p-1'>
+                    <button type="button" class="btn btn-info">{{Order.Status}}</button>
+                  </td>
+                  <td style="width:100px;" class='p-1'>
+                    <button type="button" class="btn btn-danger" onclick="deleteOrder('{{Order.pk}}')">주문취소</button>
                   </td>
                 </tr>
-                <tr>
-                  <td>2020. 06. 03.</td>
-                  <td>산모 DB 퍼미션</td>
-                  <td style="width:200px;">3</td>
-                  <td>대전</td>
-                  <td style="width:200px;" class='p-1'>
-                    <button type="button" class="btn btn-default">상세보기</button>
-                    <button type="button" class="btn btn-danger">환불받기</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2020. 06. 03.</td>
-                  <td>산모 DB 퍼미션</td>
-                  <td style="width:200px;">3</td>
-                  <td>대전</td>
-                  <td style="width:200px;" class='p-1'>
-                    <button type="button" class="btn btn-default">상세보기</button>
-                    <button type="button" class="btn btn-danger">환불받기</button>
-                  </td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -115,11 +101,7 @@
 {% block script %}
 <script>
   $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
+    $('#historyTable').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
@@ -129,5 +111,26 @@
       "responsive": true,
     });
   });
+
+  function deleteOrder(pk) {
+    var reply = confirm("정말로 주문 취소하시겠습니까?");
+    if (reply == true) {
+      var order = { pk: pk };
+      $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1/restAPI/deleteOrder",
+        data: JSON.stringify(order),
+        contentType: "application/json",
+        success: function (data) {
+          window.location.href = 'http://127.0.0.1/history';
+          return data;
+        },
+        error: function () {
+          alert('Error occured');
+        }
+      });
+    }
+  }
+
 </script>
 {% endblock %}

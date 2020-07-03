@@ -169,3 +169,27 @@
 </section>
 <!-- /.content -->
 {% endblock %}
+
+{% block script %}
+<script>
+  function deleteOrder(pk) {
+    var reply = confirm("정말로 주문 취소하시겠습니까?");
+    if (reply == true) {
+      var order = { pk: pk };
+      $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1/restAPI/deleteOrder",
+        data: JSON.stringify(order),
+        contentType: "application/json",
+        success: function (data) {
+          window.location.href = 'http://127.0.0.1/history';
+          return data;
+        },
+        error: function () {
+          alert('Error occured');
+        }
+      });
+    }
+  }
+</script>
+{% endblock %}

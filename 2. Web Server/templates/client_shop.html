@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'client_base.html' %}
 
 {% block title %}DB 구매하기{% endblock %}
 
@@ -28,7 +28,7 @@
 
 {% block nav_item %}
 <li class="nav-item">
-  <a href="/" class="nav-link">
+  <a href="/" class="nav-link active">
     <i class="nav-icon far fa-circle text-info"></i>
     <p>DB 구매하기</p>
   </a>
@@ -45,7 +45,6 @@
     <p>내 고객 정보</p>
   </a>
 </li>
-
 {% endblock %}
 
 {% block section %}
@@ -53,222 +52,41 @@
 <section class="content">
   <div class="container-fluid">
 
+
     <div class="row">
+      {% for Product in ProductList %}
       <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
               <i class="fas fa-text-width"></i>
-              생명보험 DB
+              {{Product.Name}}
             </h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
             <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
+              <li>{{Product.ShortDesc}}</li>
             </ul>
             <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
+              data-target="#modal{{loop.index}}">구매하기</button>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
       </div>
       <!-- ./col -->
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fas fa-text-width"></i>
-              생명보험 DB
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
-            <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
-            </ul>
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- ./col -->
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fas fa-text-width"></i>
-              생명보험 DB
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
-            <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
-            </ul>
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- ./col -->
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fas fa-text-width"></i>
-              생명보험 DB
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
-            <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
-            </ul>
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- ./col -->
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fas fa-text-width"></i>
-              생명보험 DB
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
-            <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
-            </ul>
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- ./col -->
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fas fa-text-width"></i>
-              생명보험 DB
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
-            <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
-            </ul>
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- ./col -->
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fas fa-text-width"></i>
-              생명보험 DB
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
-            <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
-            </ul>
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- ./col -->
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fas fa-text-width"></i>
-              생명보험 DB
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
-            <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
-            </ul>
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- ./col -->
-
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <i class="fas fa-text-width"></i>
-              생명보험 DB
-            </h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <img src="../static/img/재무설계.png" class="img-fluid" alt="Paris" width="600" height="300">
-            <ul>
-              <li>생명보험 관련 DB를 구매할 수 있습니다.</li>
-            </ul>
-            <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
-              data-target="#modal-default">구매하기</button>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- ./col -->
-
+      {% endfor %}
     </div>
     <!-- /.row -->
-
-    <div class="modal fade" id="modal-default">
+    {% for Product in ProductList %}
+    {% set outer_loop = loop %}
+    <div class="modal fade" id="modal{{loop.index}}">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">생명보험 DB 구매</h4>
+            <h4 class="modal-title" id="ProductName{{loop.index}}">{{Product.Name}}</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -277,28 +95,18 @@
             <div class="row">
               <nav class="w-100">
                 <div class="nav nav-tabs " id="product-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc"
-                    role="tab" aria-controls="product-desc" aria-selected="true">상품설명</a>
+                  <a class="nav-item nav-link" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab"
+                    aria-controls="product-desc" aria-selected="true">상품설명</a>
                   <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments"
                     role="tab" aria-controls="product-comments" aria-selected="false">A/S
                     정책</a>
-                  <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating"
+                  <a class="nav-item nav-link active" id="product-rating-tab" data-toggle="tab" href="#product-rating"
                     role="tab" aria-controls="product-rating" aria-selected="false">구매하기</a>
                 </div>
               </nav>
               <div class="tab-content p-3 table-responsive" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="product-desc" role="tabpanel"
-                  aria-labelledby="product-desc-tab"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Morbi vitae condimentum erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                  posuere cubilia Curae; Sed posuere, purus at efficitur hendrerit, augue elit lacinia arcu, a
-                  eleifend sem elit et nunc. Sed rutrum vestibulum est, sit amet cursus dolor fermentum vel.
-                  Suspendisse mi nibh, congue et ante et, commodo mattis lacus. Duis varius finibus purus sed
-                  venenatis. Vivamus varius metus quam, id dapibus velit mattis eu. Praesent et semper risus.
-                  Vestibulum erat erat, condimentum at elit at, bibendum placerat orci. Nullam gravida velit
-                  mauris, in pellentesque urna pellentesque viverra. Nullam non pellentesque justo, et ultricies
-                  neque. Praesent vel metus rutrum, tempus erat a, rutrum ante. Quisque interdum efficitur nunc
-                  vitae consectetur. Suspendisse venenatis, tortor non convallis interdum, urna mi molestie eros,
-                  vel tempor justo lacus ac justo. Fusce id enim a erat fringilla sollicitudin ultrices vel metus.
+                <div class="tab-pane table-responsive p-0" id="product-desc" role="tabpanel"
+                  aria-labelledby="product-desc-tab">{{Product.LongDesc}}
                 </div>
                 <div class="tab-pane table-responsive p-0" id="product-comments" role="tabpanel"
                   aria-labelledby="product-comments-tab"> Vivamus rhoncus nisl sed venenatis luctus. Sed
@@ -309,7 +117,7 @@
                   lorem, vehicula rhoncus nisl dui sit amet eros. Nulla turpis lorem, dignissim a sapien eget,
                   ultrices venenatis dolor. Curabitur vel turpis at magna elementum hendrerit vel id dui.
                   Curabitur a ex ullamcorper, ornare velit vel, tincidunt ipsum. </div>
-                <div class="tab-pane table-responsive p-0" id="product-rating" role="tabpanel"
+                <div class="tab-pane table-responsive p-0 fade show active" id="product-rating" role="tabpanel"
                   aria-labelledby="product-rating-tab">
                   <div class="col-12">
                     <h5>구매 하기</h5>
@@ -324,22 +132,27 @@
                         </tr>
                       </thead>
                       <tbody>
+                        {% for Option in Product.Option %}
                         <tr>
-                          <td>1.</td>
-                          <td>보험 DB</td>
-                          <td style="width: 150px"><input class="form-control form-control-sm" value="2" type="text">
+                          <td>{{loop.index}}</td>
+                          <td class='option{{outer_loop.index}}'>{{Product.Option[loop.index0]}}</td>
+                          <td style="width: 150px"><input id="amount{{outer_loop.index}}_{{loop.index}}"
+                              class="form-control form-control-sm amount{{outer_loop.index}}" value="0" type="text">
                           </td>
-                          <td>60,000</td>
-                          <td>120,000</td>
+                          <td>{{Product.Price[loop.index0]}}</td>
+                          <td id="price{{outer_loop.index}}_{{loop.index}}" class="price{{outer_loop.index}}">
+                            {{Product.Price[loop.index0]}}</td>
                         </tr>
+                        {% endfor %}
                       </tbody>
                     </table>
                     <div class='text-right'>
-                      <h5><b><small>총 결제 금액 : </small>120,000</b></h5>
+                      <h5><small>총 결제 금액 : </small><b id="total{{loop.index}}">120,000</b></h5>
                     </div>
                     <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                       <label class="btn btn-secondary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked>구매하기
+                        <input type="radio" onclick="alert('구매합니다.');buyingButton('{{loop.index}}');" name="options"
+                          id="buy_button" autocomplete="off" data-dismiss="modal" checked>구매하기
                       </label>
                     </div>
                     <br>
@@ -380,9 +193,64 @@
       <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+    {% endfor %}
 
   </div><!-- /.container-fluid -->
 
 </section>
 <!-- /.content -->
+{% endblock %}
+
+{% block script %}
+<script>
+  {% for Product in ProductList %}
+  {% set outer_loop = loop %}
+  {% for Price in Product.Price %}
+  $("#amount{{outer_loop.index}}_{{loop.index}}").bind("change paste keyup", function () {
+    $("#price{{outer_loop.index}}_{{loop.index}}").html(numberWithCommas($("#amount{{outer_loop.index}}_{{loop.index}}").val() * {{ Price }}));
+  var total_sum = 0;
+  $(".price{{outer_loop.index}}").each(function (index, element) {
+    total_sum += parseInt($(this)[0].innerText.replace(/\,/g, ""));
+  });
+  $("#total{{outer_loop.index}}").html(numberWithCommas(total_sum));
+  });
+
+  $("#price{{outer_loop.index}}_{{loop.index}}").html(numberWithCommas($("#amount{{outer_loop.index}}_{{loop.index}}").val() * {{ Price }}));
+  var total_sum = 0;
+  $(".price{{outer_loop.index}}").each(function (index, element) {
+    total_sum += parseInt($(this)[0].innerText.replace(/\,/g, ""));
+  });
+  $("#total{{outer_loop.index}}").html(numberWithCommas(total_sum));
+
+  {% endfor %}
+  {% endfor %}
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function buyingButton(Index) {
+    ProductName = $('#ProductName' + Index).html();
+    Amount = $('.amount' + Index)
+    Price = $('.price' + Index)
+    Option = $('.option' + Index)
+    Amounts = [];
+    Prices = [];
+    Options = [];
+    for (var i = 0; i < Amount.length; i++) {
+      Options.push(Option[i].innerHTML);
+      Amounts.push(Amount[i].value);
+      Prices.push(Price[i].innerHTML);
+    }
+    var order = { Name: ProductName, Options: Options, Amounts: Amounts, Prices: Prices };
+    $.ajax({
+      type: "POST",
+      url: "http://127.0.0.1/restAPI/insertOrder",
+      data: JSON.stringify(order),
+      contentType: "application/json",
+    });
+  }
+
+
+</script>
 {% endblock %}
